@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Microsoft.EntityFrameworkCore;
+using System.ComponentModel.DataAnnotations;
 
 namespace EstoqueMVC.Models
 {
@@ -12,7 +13,8 @@ namespace EstoqueMVC.Models
         [Required(ErrorMessage = "A quantidade do produto é obrigatória.")]
         public int Quantidade { get; set; }
 
-        [Required(ErrorMessage = "O preço do produto é obrigatório.")]
+        [Range(0.01, double.MaxValue, ErrorMessage = "O preço deve ser maior que zero")]
+        [Precision(18, 2)] 
         public decimal Preco { get; set; }
     }
 }
